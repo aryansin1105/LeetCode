@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+        if(root == NULL)
+            return 0;
+        int left = maxDepth(root->left);
+        int right = maxDepth(root->right);
+        return max(left,right)+1;
+    }
+};
+
+//iterative approach DFS STACK
+
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+    if(root == NULL)return 0;
+    stack<TreeNode*> s;
+    stack<int> value;
+    s.push(root);
+    value.push(1);
+    int m = 0;
+    while(!s.empty()) {
+        TreeNode* node = s.top();
+        s.pop();
+        int temp = value.top();
+        value.pop();
+        m = max(temp, m);
+        if(node->left != NULL) {
+            s.push(node->left);
+            value.push(temp+1);
+        }
+        if(node->right != NULL) {
+            s.push(node->right);
+            value.push(temp+1);
+        }
+    }
+    return m;
+    }
+};
