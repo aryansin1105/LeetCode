@@ -1,0 +1,34 @@
+class Solution{
+public:
+    int numSquareSum(int n)
+    {
+        int squareSum = 0;
+        while (n) {
+            squareSum += (n % 10) * (n % 10);
+            n /= 10;
+    }
+    return squareSum;
+}
+    int isHappyNumber(int n)
+    {
+    set<int> st;
+    while (1)
+        {
+            n = numSquareSum(n);
+            if (n == 1)
+                return true;
+            if (st.find(n) != st.end())
+                return false;
+            st.insert(n);
+        }
+    }
+    int nextHappy(int N){
+        // code here
+        for(int i=N+1;;i++){
+            if(isHappyNumber(i))
+                return i;
+            else
+                continue;
+        }
+    }
+};
